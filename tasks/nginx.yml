@@ -8,7 +8,6 @@
   sudo: yes
   apt: name=nginx update_cache=yes state=present
 
-
 - name: "disable nginx and don't start service on reboot"
   sudo: yes
   service: name=nginx enabled=no state=stopped
