@@ -9,6 +9,8 @@ deploy_type: "restart"
 mix_env: "prod"
 setup_postgres: True
 
+app_prefix: "{{ app_namem}}"
+
 build_frontend: True
 frontend_dir: ""
 frontend_build_command: "$(npm bin)/brunch build --production"
