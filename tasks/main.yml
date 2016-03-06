@@ -8,8 +8,13 @@
 - when: action == "deploy"
   include: action-deploy.yml
 
+- when: action == "fast-deploy"
+  include: action-fast-deploy.yml
+
 - when: action == "migrate"
   include: action-migrate.yml
 
 - when: action == "run-cmd"
   include: action-run-cmd.yml
+
+

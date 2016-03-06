@@ -1,0 +1,49 @@
+---
+#- when: setup_postgres == True
+#  include: postgres-facts.yml
+
+
+- include: project.yml
+
+#- name: "clone project"
+#  git:
+#    repo: "{{ repo_url }}"
+#    version: "{{ git_ref }}"
+#    dest: "{{ project_path }}"
+#    accept_hostkey: True
+#    force: True
+#  remote_user: "{{ deployer }}"
+#
+#- name: "fetch mix dependencies"
+#  command: bash -lc 'mix deps.get --only {{ mix_env }}' chdir="{{ project_path }}"
+#  async: 900
+#  remote_user: "{{ deployer }}"
+#  environment:
+#    MIX_ENV: "{{ mix_env }}"
+
+
+#- when: build_frontend == True
+#- name: "build frontend assets"
+#  command: bash -lc "{{ frontend_build_command }}"
+#  remote_user: "{{ deployer }}"
+#  args:
+#    chdir: "{{ project_path }}/{{ frontend_dir }}"
+#
+#- when: build_frontend == True
+#- when: "post_frontend_build != False"
+#  name: "post-frontend-build command"
+#  command: 'bash -lc "{{ post_frontend_build }}"'
+#  remote_user: "{{ deployer }}"
+#  args:
+#    chdir: "{{ project_path }}"
+#  environment:
+#    MIX_ENV: "{{ mix_env }}"
+#
+
+
+- include: release.yml
+
+
+- name: start nginx using monit
+  sudo: yes
+  monit: name="nginx" state=started
