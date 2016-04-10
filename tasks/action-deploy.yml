@@ -2,9 +2,9 @@
 - when: setup_postgres == True
   include: postgres-facts.yml
 
-
 - include: project.yml
 
+- include: ruby.yml
 
 - when: build_frontend == True
   include: frontend.yml

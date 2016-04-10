@@ -1,0 +1,15 @@
+- name: install ruby
+  sudo: yes
+  apt: name="{{ item }}" update_cache=yes state=present
+  remote_user: "{{ deployer }}"
+  with_items:
+    - ruby2.0
+    - ruby-sass
+
+- name: install bundler gem
+  remote_user: "{{ deployer }}"
+  sudo: no
+  gem:
+    name: bundler
+    state: present
+

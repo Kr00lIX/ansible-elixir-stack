@@ -21,6 +21,7 @@
 #  environment:
 #    MIX_ENV: "{{ mix_env }}"
 
+- include: ruby.yml
 
 #- when: build_frontend == True
 #- name: "build frontend assets"
